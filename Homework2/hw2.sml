@@ -66,15 +66,15 @@ exception IllegalMove
 (*Task 1*)
 fun card_color (card) =
     case card of
-	Clubs => Black
-      | Spades => Black
+	(Clubs,_) => Black
+      | (Spades,_) => Black
       | _  => Red
 
 
 (*Task 2*)
 fun card_value (card) =
     case card of
-	Num value => value 
-      | Ace => 11
+	(_,Num value) => value 
+      | (_,Ace) => 11
       | _ => 10
 		 
