@@ -53,4 +53,19 @@ fun similar_names (list_of_lists, {first=firstName, last=lastName, middle=middle
 
 
 
-	
+(*Problem №2*)
+datatype suit = Clubs | Diamonds | Hearts | Spades    (*Хреста, Буба, Черва, Піка*)
+datatype rank = Jack | Queen | King | Ace | Num of int 
+type card = suit * rank
+
+datatype color = Red | Black
+datatype move = Discard of card | Draw 
+
+exception IllegalMove
+
+(*Task 1*)
+fun card_color (card_type) =
+    case card_type of
+	Clubs => Black
+      | Spades => Black
+      | _  => Red
