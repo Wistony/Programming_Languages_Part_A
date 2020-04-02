@@ -10,15 +10,13 @@ fun all_except_option (str, list) =
 		  then all_except_option(str, tl)
 		  else hd::all_except_option(str, tl)
 
-
-
 (*Second task*)
 fun get_substitutions1 (list_of_lists, str) =
     case list_of_lists of 
 	[] => []
       | hd::tl  => if all_except_option(str, hd) = hd
 		   then get_substitutions1(tl, str)
-		   else all_except_option(str,hd) @ get_substitutions1(tl, str)			   
+		   else all_except_option(str, hd) @ get_substitutions1(tl, str)			   
 
 		      
 
