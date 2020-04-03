@@ -3,14 +3,23 @@
 fun same_string (s1 : string, s2 : string) =
     s1 = s2
 	     
-fun all_except_option (str, head::tail) =
-    case same_string (str, head) of
-	true => all_except_option (str, tail)
-      | false  =>  head :: all_except_option(str, tail)
-	
+fun all_except_option (str, list) =
+    let 
+	fun aux (str, list) = 
+	    case list of
+		[] => []
+	      | x::xs' => if same_string(str, x)
+			  then aux(str, xs')
+			  else x::aux(str, xs')
+    in
+	if list = aux(str,list)
+	then NONE
+	else SOME(aux(str, list))
+    end				 
+
 
 	
-	(*
+	
 (*Task B*)
 fun get_substitutions1 (list_of_lists, str) =
     case list_of_lists of 
@@ -33,8 +42,8 @@ fun get_substitutions2 (list_of_lists, str) =
     in
 	aux (list_of_lists, str, [])
     end
-*)
-(*
+
+
 (*Task D*)					    
 fun similar_names (list_of_lists, {first=firstName, last=lastName, middle=middleName}) =
     let
@@ -46,7 +55,7 @@ fun similar_names (list_of_lists, {first=firstName, last=lastName, middle=middle
     in
 	add (sub, middleName, lastName, [{first=firstName, last=lastName, middle=middleName}])
     end
-*)
+
 
 
 (*Problem №2*)
@@ -74,13 +83,23 @@ fun card_value (card) =
       | (_,Ace) => 11
       | _ => 10
 		 
-(*
+
 (*Task C*)
 fun remove_card (cs, c, e) =
-    case cs of
-	[] => []
-      | x::xs'  => if x = c
-		   then remove_card (xs', c, e) 
-		   else x :: remove_card(cs, c, e)
+    let
+	fun delete_card (cs, c) =
+	    case cs of
+		[] => []
+	     |  x::xs' => if x = c
+			  then xs'
+			  else x::delete_card(xs',c)    
+	val held_cards = delete_card(cs, c)
+    in
+	if held_cards = cs
+	then raise e
+	else held_cards
+    end
+	
+	
 					
-*)
+					
