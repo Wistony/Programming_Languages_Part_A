@@ -126,6 +126,21 @@ fun sum_cards (cards_list) =
 	
  
 	
+(*Task F*)
+fun score (held_cards, goal) =
+    let
+	val sum  = sum_cards(held_cards)
+    in
+	case (sum > goal, all_same_color(held_cards)) of
+	   (true,true) => ((sum - goal) * 3) div 2
+	 | (true,false) => (sum - goal) * 3
+	 | (false,true) => (goal - sum) div 2 
+	 | (false,false) => goal - sum
+    end
+	
+		 
+		    
+	    
 	
 	
 					
