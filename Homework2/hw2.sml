@@ -100,6 +100,18 @@ fun remove_card (cs, c, e) =
 	else held_cards
     end
 	
+
+
+(*Task D*)
+fun all_same_color (cards_list) =
+    case cards_list of
+	[] => true
+	   | x::[] => true 
+	   | head::neck::rest => card_color(head) = card_color(neck)
+				 andalso all_same_color(neck::rest) 
+ 
+	
+	
 	
 					
 					
