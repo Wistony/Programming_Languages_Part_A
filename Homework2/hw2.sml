@@ -139,9 +139,29 @@ fun score (held_cards, goal) =
     end
 	
 		 
-		    
-	    
+(*Task G*)
+(*cs - card_list*)
+(*hc - held_card*)	
+fun officiate (card_list, move_list, goal) =
+    let
+	fun make_move ([], cs, hc) = hc (*if move_list is empty, game is over*)
+	  | make_move (mv_hd::mv_tl, cs, hc) = 
+	    case (mv_hd, cs) of
+		(Draw,[]) => hc (*if card_list is empty, game is over*)
+	      | (Draw,x::xs') => if sum_cards(x::hc) > goal  (*check or drawing causes the sum of the held-cards to exceed the goal*)
+				 then x::hc (* if exceed, make drawing and game is over*)
+				 else make_move(mv_tl, xs', x::hc) (*if not exceed, play continues*)
+	      | (Discard c,_) => make_move(mv_tl, cs, remove_card(hc, c, IllegalMove))
+    in
+	score(make_move(move_list, card_list, []), goal)
+    end
 	
+
+
+
+	(*  | (mv_hd::mv_tl, cs_hd::cs_tl) => case mv_hd of
+						   Draw => make_move(mv_tl, cs_tl, cs_hd::held_cards)
+						 | Discard card => make_move(mv_tl, cs_hd::cs_tl,remove_card(held_cards, card, IllegalMove) handle IllegalMove => false)	*)
 	
 					
 					
