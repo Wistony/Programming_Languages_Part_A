@@ -16,8 +16,6 @@ fun all_except_option (str, list) =
 	then NONE
 	else SOME(aux(str, list))
     end				 
-
-
 	
 	
 (*Task B*)
@@ -28,8 +26,7 @@ fun get_substitutions1 (list_of_lists, str) =
 		       NONE => get_substitutions1(xs', str)
 		     | SOME value => value @ get_substitutions1(xs', str)
 
-							       
-							       
+											       
 (*Task C*)								       
 fun get_substitutions2 (list_of_lists, str) =
     let
@@ -157,11 +154,3 @@ fun officiate (card_list, move_list, goal) =
     end
 	
 
-
-
-	(*  | (mv_hd::mv_tl, cs_hd::cs_tl) => case mv_hd of
-						   Draw => make_move(mv_tl, cs_tl, cs_hd::held_cards)
-						 | Discard card => make_move(mv_tl, cs_hd::cs_tl,remove_card(held_cards, card, IllegalMove) handle IllegalMove => false)	*)
-	
-					
-					
