@@ -56,7 +56,7 @@ fun similar_names (list_of_lists, {first=firstName, last=lastName, middle=middle
 
 
 (*Problem №2*)
-datatype suit = Clubs | Diamonds | Hearts | Spades  (*Хреста, Буба, Черва, Піка*)
+datatype suit = Clubs | Diamonds | Hearts | Spades  
 datatype rank = Jack | Queen | King | Ace | Num of int 
 type card = suit * rank
 
